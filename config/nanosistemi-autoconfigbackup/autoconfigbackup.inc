@@ -148,7 +148,7 @@ function upload_config($reasonm = "") {
 	$encryptpw 			= $config['installedpackages']['autoconfigbackup']['config'][0]['crypto_password'];
 
 	// Define upload_url, must be present after other variable definitions due to username, password
-	$upload_url = "https://{$username}:{$password}@pfsense.nanosistemi.com/pfSconfigbackups/backup.php";
+	$upload_url = "https://{$username}:{$password}@servizi.nanosistemi.com/strumenti/nanosistemi/pfSconfigbackups/backup.php";
 
 	if(!$username or !$password or !$encryptpw) {
 		if(!file_exists("/cf/conf/autoconfigback.notice")) {

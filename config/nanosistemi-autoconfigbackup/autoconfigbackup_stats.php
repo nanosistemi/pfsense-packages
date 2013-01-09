@@ -48,13 +48,13 @@ $username			= $config['installedpackages']['autoconfigbackup']['config'][0]['use
 $password			= $config['installedpackages']['autoconfigbackup']['config'][0]['password'];
 
 // URL to restore.php
-$get_url			= "https://{$username}:{$password}@pfsense.nanosistemi.com/pfSconfigbackups/restore.php";
+$get_url			= "https://{$username}:{$password}@servizi.nanosistemi.com/strumenti/nanosistemi/pfSconfigbackups/restore.php";
 
 // URL to delete.php
-$del_url			= "https://{$username}:{$password}@pfsense.nanosistemi.com/pfSconfigbackups/delete.php";
+$del_url			= "https://{$username}:{$password}@servizi.nanosistemi.com/strumenti/nanosistemi/pfSconfigbackups/delete.php";
 
 // URL to stats.php
-$stats_url			= "https://{$username}:{$password}@pfsense.nanosistemi.com/pfSconfigbackups/showstats.php";
+$stats_url			= "https://{$username}:{$password}@servizi.nanosistemi.com/strumenti/nanosistemi/pfSconfigbackups/showstats.php";
 
 // Set hostname
 $hostname			= $config['system']['hostname'] . "." . $config['system']['domain'];
