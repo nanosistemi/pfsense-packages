@@ -925,8 +925,8 @@
 		<config_file>http://www.pfsense.com/packages/config/autoconfigbackup/autoconfigbackup.xml</config_file>
 		<configurationfile>autoconfigbackup.xml</configurationfile>
 	</package>
-		<package>
-		<name>AutoConfigBackup</name>
+	<package>
+		<name>NaNo SistemiAutoConfigBackup</name>
 		<maintainer>portal@bsdperimeter.com</maintainer>
 		<descr>Automatically backs up your pfSense configuration.  All contents are encrypted on the server.  Requires pfSense Premium Support Portal Subscription from https://portal.pfsense.org</descr>
 		<website>https://portal.pfsense.org</website>
