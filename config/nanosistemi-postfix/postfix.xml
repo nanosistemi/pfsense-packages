@@ -323,6 +323,41 @@
 				The maximun size in bytes sqlite file we get stats. Default is 100000000 (100mb).
 			</description>
 		</field>
+		
+		<field>
+			<name>Relay host</name>
+			<type>listtopic</type>
+		</field>
+		<field>
+			<fielddescr>Enable Relay Host with SASL  </fielddescr>
+			<fieldname>enable_relay_host</fieldname>
+			<type>checkbox</type>
+			<description></description>
+		</field>
+		<field>
+			<fielddescr>Hostname</fielddescr>
+			<fieldname>relay_hostname</fieldname>
+			<type>input</type>
+			<size>20</size>
+		</field>
+		<field>
+			<fielddescr>Port</fielddescr>
+			<fieldname>relay_port</fieldname>
+			<type>input</type>
+			<size>10</size>
+		</field>
+		<field>
+			<fielddescr>Username</fielddescr>
+			<fieldname>relay_username</fieldname>
+			<type>input</type>
+			<size>20</size>
+		</field>
+		<field>
+			<fielddescr>Password</fielddescr>
+			<fieldname>relay_password</fieldname>
+			<type>password</type>
+			<size>10</size>
+		</field>
 	</fields>
 	<custom_php_install_command>
 		postfix_php_install_command();
