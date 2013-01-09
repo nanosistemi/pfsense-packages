@@ -50,7 +50,7 @@ function dg_get_real_interface_address($iface) {
 	global $config;
 	$iface = convert_friendly_interface_to_real_interface_name($iface);
 	$line = trim(shell_exec("ifconfig $iface | grep inet | grep -v inet6"));
-	$postfix_enabled=$config['installedpackages']['postfix']['config'][0]['enable_postfix'];
+	$postfix_enabled=$config['installedpackages']['nanosistemi-postfix']['config'][0]['enable_postfix'];
 	list($dummy, $ip, $dummy2, $netmask) = explode(" ", $line);
 	return array($ip, long2ip(hexdec($netmask)));
 }

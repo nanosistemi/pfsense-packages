@@ -46,7 +46,7 @@ function px_get_real_interface_address($iface) {
 	global $config;
 	$iface = convert_friendly_interface_to_real_interface_name($iface);
 	$line = trim(shell_exec("ifconfig $iface | grep inet | grep -v inet6"));
-	$postfix_enabled=$config['installedpackages']['postfix']['config'][0]['enable_postfix'];
+	$postfix_enabled=$config['installedpackages']['nanosistemi-postfix']['config'][0]['enable_postfix'];
 	list($dummy, $ip, $dummy2, $netmask) = explode(" ", $line);
 	return array($ip, long2ip(hexdec($netmask)));
 }
@@ -58,7 +58,7 @@ function sync_relay_recipients($via_cron="cron"){
 		$relay_recipients="";
 		$relay_ldap_recipients="";
 		$ad_export="/usr/local/etc/postfix/adexport.pl";
-		$postfix_enabled=$config['installedpackages']['postfix']['config'][0]['enable_postfix'];
+		$postfix_enabled=$config['installedpackages']['nanosistemi-postfix']['config'][0]['enable_postfix'];
 		if (is_array($config['installedpackages']['postfixrecipients']['config'])) {
 			$relay_ldap_recipients="";
 			$postfix_recipients_config=$config['installedpackages']['postfixrecipients']['config'][0];
@@ -138,7 +138,7 @@ function check_cron(){
 			$cron_cmd_sqlite = "";
 			$cron_postfix_sqlite="";
 			$cron_cmd="/usr/local/bin/php -q /usr/local/www/postfix_recipients.php";
-			$postfix_enabled=$config['installedpackages']['postfix']['config'][0]['enable_postfix'];
+			$postfix_enabled=$config['installedpackages']['nanosistemi-postfix']['config'][0]['enable_postfix'];
 			#check ldap update
 			if (is_array($config['installedpackages']['postfixrecipients']['config']))
 				$postfix_recipients_config=$config['installedpackages']['postfixrecipients']['config'][0];
@@ -168,8 +168,8 @@ function check_cron(){
 					}
 			}
 			#check crontab Sqlite databases
-			if (is_array($config['installedpackages']['postfix']['config']) && $postfix_enabled=="on"){
-				$cron_sqlite_queue=$config['installedpackages']['postfix']['config'][0]['update_sqlite'];
+			if (is_array($config['installedpackages']['nanosistemi-postfix']['config']) && $postfix_enabled=="on"){
+				$cron_sqlite_queue=$config['installedpackages']['nanosistemi-postfix']['config'][0]['update_sqlite'];
 				$cron_cmd_sqlite="/usr/local/bin/php -q /usr/local/www/postfix.php";
 				if ($cron_sqlite_queue != "" && $cron_sqlite_queue != "never"){
 					$cron_postfix_sqlite=array("minute" =>	"*",
@@ -288,7 +288,7 @@ function sync_package_postfix() {
 	#check patch in /etc/inc/config.
 	$relay_domains = "";
 	$transport = "";
-	$postfix_config=$config['installedpackages']['postfix']['config'][0];
+	$postfix_config=$config['installedpackages']['nanosistemi-postfix']['config'][0];
 	if (is_array($config['installedpackages']['postfixdomains']))
 		$postfix_domains=$config['installedpackages']['postfixdomains']['config'][0];
 	$message_size_limit=($postfix_config['message_size_limit']?$postfix_config['message_size_limit']:"10240000");
@@ -727,7 +727,7 @@ EOF;
 	conf_mount_ro();
 
 	sleep(1);
-	if ($config['installedpackages']['postfix']['config'][0]['enable_postfix']){
+	if ($config['installedpackages']['nanosistemi-postfix']['config'][0]['enable_postfix']){
 		log_error("Reloading/starting postfix");
 		system('/bin/chmod +x /usr/local/etc/rc.d/postfix.sh');
 		mwexec_bg("/usr/local/sbin/postfix reload || /usr/local/etc/rc.d/postfix.sh start");
@@ -773,7 +773,7 @@ function postfix_php_install_command() {
 function postfix_php_deinstall_command() {
 	global $config;
 	#disable service
-	$config['installedpackages']['postfix']['config'][0]['enable_postfix']="";
+	$config['installedpackages']['nanosistemi-postfix']['config'][0]['enable_postfix']="";
 	write_config();
 	sync_package_postfix();
 	conf_mount_rw();
@@ -832,7 +832,7 @@ function postfix_do_xmlrpc_sync($sync_to_ip, $password,$sync_type) {
 	$sync_db=$config['installedpackages']['postfixsync']['config'][0]['rsync'];
 	if ($sync_xml && preg_match("/xmlrpc/",$sync_type)){
 		log_error("Include postfix xmls");
-		$xml['postfix'] = $config['installedpackages']['postfix'];
+		$xml['nanosistemi-postfix'] = $config['installedpackages']['nanosistemi-postfix'];
 		$xml['postfixdomains'] = $config['installedpackages']['postfixdomains'];
 		$xml['postfixacl'] = $config['installedpackages']['postfixacl'];
 		$xml['postfixrecipients'] = $config['installedpackages']['postfixrecipients'];
