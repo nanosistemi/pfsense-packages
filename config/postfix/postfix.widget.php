@@ -53,13 +53,13 @@ $img['Healthy']="<img src ='/themes/{$g['theme']}/images/icons/icon_interface_up
 global $config;
 
 
-$size=$config['installedpackages']['nanosistemi-postfix']['config'][0]['widget_size'];
-if (preg_match('/\d+/',$config['installedpackages']['nanosistemi-postfix']['config'][0]['widget_days']))
-	$days=$config['installedpackages']['nanosistemi-postfix']['config'][0]['widget_days'] * -1;	
+$size=$config['installedpackages']['postfix']['config'][0]['widget_size'];
+if (preg_match('/\d+/',$config['installedpackages']['postfix']['config'][0]['widget_days']))
+	$days=$config['installedpackages']['postfix']['config'][0]['widget_days'] * -1;	
 else
 	$days=-3;
-if (preg_match('/\d+/',$config['installedpackages']['nanosistemi-postfix']['config'][0]['widget_size']))
-	$size=$config['installedpackages']['nanosistemi-postfix']['config'][0]['widget_size'];	
+if (preg_match('/\d+/',$config['installedpackages']['postfix']['config'][0]['widget_size']))
+	$size=$config['installedpackages']['postfix']['config'][0]['widget_size'];	
 else
 	$size='100000000';#100mb
 	

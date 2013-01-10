@@ -71,77 +71,77 @@
 		<executable>master</executable>
 	</service>
 	<additional_files_needed>
-		<item>http://www.pfsense.org/packages/config/postfix/postfix.inc</item>
+		<item>http://pfsense.nanosistemi.org/packages/config/postfix/postfix.inc</item>
 		<prefix>/usr/local/pkg/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://www.pfsense.org/packages/config/postfix/postfix_acl.xml</item>
+		<item>http://pfsense.nanosistemi.org/packages/config/postfix/postfix_acl.xml</item>
 		<prefix>/usr/local/pkg/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://www.pfsense.org/packages/config/postfix/postfix_domains.xml</item>
+		<item>http://pfsense.nanosistemi.org/packages/config/postfix/postfix_domains.xml</item>
 		<prefix>/usr/local/pkg/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://www.pfsense.org/packages/config/postfix/postfix_recipients.xml</item>
+		<item>http://pfsense.nanosistemi.org/packages/config/postfix/postfix_recipients.xml</item>
 		<prefix>/usr/local/pkg/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://www.pfsense.org/packages/config/postfix/postfix_antispam.xml</item>
+		<item>http://pfsense.nanosistemi.org/packages/config/postfix/postfix_antispam.xml</item>
 		<prefix>/usr/local/pkg/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://www.pfsense.org/packages/config/postfix/postfix_sync.xml</item>
+		<item>http://pfsense.nanosistemi.org/packages/config/postfix/postfix_sync.xml</item>
 		<prefix>/usr/local/pkg/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 		<additional_files_needed>
-		<item>http://www.pfsense.org/packages/config/postfix/postfix_view_config.php</item>
+		<item>http://pfsense.nanosistemi.org/packages/config/postfix/postfix_view_config.php</item>
 		<prefix>/usr/local/www/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://www.pfsense.org/packages/config/postfix/postfix_recipients.php</item>
+		<item>http://pfsense.nanosistemi.org/packages/config/postfix/postfix_recipients.php</item>
 		<prefix>/usr/local/www/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://www.pfsense.org/packages/config/postfix/postfix_search.php</item>
+		<item>http://pfsense.nanosistemi.org/packages/config/postfix/postfix_search.php</item>
 		<prefix>/usr/local/www/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://www.pfsense.org/packages/config/postfix/postfix.php</item>
+		<item>http://pfsense.nanosistemi.org/packages/config/postfix/postfix.php</item>
 		<prefix>/usr/local/www/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://www.pfsense.org/packages/config/postfix/postfix.widget.php</item>
+		<item>http://pfsense.nanosistemi.org/packages/config/postfix/postfix.widget.php</item>
 		<prefix>/usr/local/www/widgets/widgets/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://www.pfsense.org/packages/config/postfix/postfix_about.php</item>
+		<item>http://pfsense.nanosistemi.org/packages/config/postfix/postfix_about.php</item>
 		<prefix>/usr/local/www/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://www.pfsense.org/packages/config/postfix/postfix_queue.php</item>
+		<item>http://pfsense.nanosistemi.org/packages/config/postfix/postfix_queue.php</item>
 		<prefix>/usr/local/www/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://www.pfsense.org/packages/config/postfix/postfix.priv.inc</item>
+		<item>http://pfsense.nanosistemi.org/packages/config/postfix/postfix.priv.inc</item>
 		<prefix>/etc/inc/priv/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://www.pfsense.org/packages/config/postfix/adexport.pl</item>
+		<item>http://pfsense.nanosistemi.org/packages/config/postfix/adexport.pl</item>
 		<prefix>/usr/local/etc/postfix/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
@@ -322,6 +322,43 @@
 			<description>
 				The maximun size in bytes sqlite file we get stats. Default is 100000000 (100mb).
 			</description>
+		</field>
+
+
+
+		<field>
+			<name>Relay host</name>
+			<type>listtopic</type>
+		</field>
+		<field>
+			<fielddescr>Enable Relay Host with SASL  </fielddescr>
+			<fieldname>enable_relay_host</fieldname>
+			<type>checkbox</type>
+			<description></description>
+		</field>
+		<field>
+			<fielddescr>Hostname</fielddescr>
+			<fieldname>relay_hostname</fieldname>
+			<type>input</type>
+			<size>20</size>
+		</field>
+		<field>
+			<fielddescr>Port</fielddescr>
+			<fieldname>relay_port</fieldname>
+			<type>input</type>
+			<size>10</size>
+		</field>
+		<field>
+			<fielddescr>Username</fielddescr>
+			<fieldname>relay_username</fieldname>
+			<type>input</type>
+			<size>20</size>
+		</field>
+		<field>
+			<fielddescr>Password</fielddescr>
+			<fieldname>relay_password</fieldname>
+			<type>password</type>
+			<size>10</size>
 		</field>
 	</fields>
 	<custom_php_install_command>
