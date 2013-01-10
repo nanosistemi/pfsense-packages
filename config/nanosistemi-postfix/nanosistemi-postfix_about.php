@@ -55,11 +55,11 @@ include("head.inc");
 		<?php
 	$tab_array = array();
 	$tab_array[] = array(gettext("General"), false, "/pkg_edit.php?xml=nanosistemi-postfix.xml&id=0");
-	$tab_array[] = array(gettext("Domains"), false, "/pkg_edit.php?xml=postfix_domains.xml&id=0");
-	$tab_array[] = array(gettext("Recipients"), false, "/pkg_edit.php?xml=postfix_recipients.xml&id=0");
-	$tab_array[] = array(gettext("Access Lists"), false, "/pkg_edit.php?xml=postfix_acl.xml&id=0");
-	$tab_array[] = array(gettext("Antispam"), false, "/pkg_edit.php?xml=postfix_antispam.xml&id=0");
-	$tab_array[] = array(gettext("Sync"), false, "/pkg_edit.php?xml=postfix_sync.xml&id=0");
+	$tab_array[] = array(gettext("Domains"), false, "/pkg_edit.php?xml=nanosistemi-postfix_domains.xml&id=0");
+	$tab_array[] = array(gettext("Recipients"), false, "/pkg_edit.php?xml=nanosistemi-postfix_recipients.xml&id=0");
+	$tab_array[] = array(gettext("Access Lists"), false, "/pkg_edit.php?xml=nanosistemi-postfix_acl.xml&id=0");
+	$tab_array[] = array(gettext("Antispam"), false, "/pkg_edit.php?xml=nanosistemi-postfix_antispam.xml&id=0");
+	$tab_array[] = array(gettext("Sync"), false, "/pkg_edit.php?xml=nanosistemi-postfix_sync.xml&id=0");
 	$tab_array[] = array(gettext("View config"), false, "/nanosistemi-postfix_view_config.php");
 	$tab_array[] = array(gettext("Search mail"), false, "/nanosistemi-postfix_search.php");
 	$tab_array[] = array(gettext("Queue"), false, "/nanosistemi-postfix_queue.php");

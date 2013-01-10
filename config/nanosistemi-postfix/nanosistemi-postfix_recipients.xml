@@ -58,24 +58,24 @@
 		</tab>
 		<tab>
 			<text>Domains</text>
-			<url>/pkg_edit.php?xml=postfix_domains.xml&amp;id=0</url>
+			<url>/pkg_edit.php?xml=nanosistemi-postfix_domains.xml&amp;id=0</url>
 		</tab>
 		<tab>
 			<text>Recipients</text>
-			<url>/pkg_edit.php?xml=postfix_recipients.xml&amp;id=0</url>
+			<url>/pkg_edit.php?xml=nanosistemi-postfix_recipients.xml&amp;id=0</url>
 			<active/>
 		</tab>
 		<tab>
 			<text>Access Lists</text>
-			<url>/pkg_edit.php?xml=postfix_acl.xml&amp;id=0</url>
+			<url>/pkg_edit.php?xml=nanosistemi-postfix_acl.xml&amp;id=0</url>
 		</tab>
 		<tab>
 			<text>Antispam</text>
-			<url>/pkg_edit.php?xml=postfix_antispam.xml&amp;id=0</url>
+			<url>/pkg_edit.php?xml=nanosistemi-postfix_antispam.xml&amp;id=0</url>
 		</tab>
 		<tab>
 			<text>Sync</text>
-			<url>/pkg_edit.php?xml=postfix_sync.xml&amp;id=0</url>
+			<url>/pkg_edit.php?xml=nanosistemi-postfix_sync.xml&amp;id=0</url>
 		</tab>
 		<tab>
 			<text>View config</text>
