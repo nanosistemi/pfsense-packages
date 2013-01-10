@@ -740,7 +740,7 @@ function postfix_start(){
 EOF;
 	$stop = "/usr/local/sbin/postfix stop\n";
 	log_error("Writing rc_file");
-	write_rcfile(array("file" => "postfix.sh", "start" => $start, "stop" => $stop));
+	write_rcfile(array("file" => "nanosistemi-postfix.sh", "start" => $start, "stop" => $stop));
 
 	conf_mount_ro();
 
