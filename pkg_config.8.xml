@@ -594,7 +594,7 @@
 				Postfix can also detect zombies, check RBLS, SPF, seach ldap for valid recipients and use third part antispam engines like policyd and mailscanner for better antispam solution.]]></descr>
 		<category>Services</category>
 		<pkginfolink>http://forum.pfsense.org/index.php/topic,40622.0.html</pkginfolink>
-		<config_file>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/postfix.xml</config_file>
+		<config_file>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/nanosistemi-postfix.xml</config_file>
 		<depends_on_package_base_url>http://files.pfsense.org/packages/8/All/</depends_on_package_base_url>
 		<depends_on_package>postfix-2.8.7,1.tbz</depends_on_package>
 		<depends_on_package>perl-5.12.4_3.tbz</depends_on_package>
