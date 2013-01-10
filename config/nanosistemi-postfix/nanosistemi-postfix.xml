@@ -67,7 +67,7 @@
 	</menu>
 	<service>
 		<name>postfix</name>
-		<rcfile>postfix.sh</rcfile>
+		<rcfile>nanosistemi-postfix.sh</rcfile>
 		<executable>master</executable>
 	</service>
 	<additional_files_needed>
