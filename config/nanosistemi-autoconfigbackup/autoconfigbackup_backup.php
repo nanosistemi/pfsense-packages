@@ -29,7 +29,7 @@
 
 require("globals.inc");
 require("guiconfig.inc");
-require("/usr/local/pkg/autoconfigbackup.inc");
+require("/usr/local/pkg/nanosistemi-autoconfigbackup.inc");
 
 $pfSversion = str_replace("\n", "", file_get_contents("/etc/version"));
 if(strstr($pfSversion, "1.2")) 
@@ -102,9 +102,9 @@ include("head.inc");
 			<?php
 				$tab_array = array();
 				$tab_array[] = array("Settings", false, "/pkg_edit.php?xml=autoconfigbackup.xml&amp;id=0");
-				$tab_array[] = array("Restore", false, "/autoconfigbackup.php");
-				$tab_array[] = array("Backup now", true, "/autoconfigbackup_backup.php");
-				$tab_array[] = array("Stats", false, "/autoconfigbackup_stats.php");
+				$tab_array[] = array("Restore", false, "/nanosistemi-autoconfigbackup.php");
+				$tab_array[] = array("Backup now", true, "/nanosistemi-autoconfigbackup_backup.php");
+				$tab_array[] = array("Stats", false, "/nanosistemi-autoconfigbackup_stats.php");
 				display_top_tabs($tab_array);
 			?>			
   		</td>

@@ -45,7 +45,7 @@
 	<name>postfix_antispam</name>
 	<version>1.0</version>
 	<title>Services: Postfix relay and antispam</title>
-	<include_file>/usr/local/pkg/postfix.inc</include_file>
+	<include_file>/usr/local/pkg/nanosistemi-postfix.inc</include_file>
 	<menu>
 		<name>Postfix Antispam and mail Relay</name>
 		<tooltiptext>Configure Postfix Forwarder</tooltiptext>
@@ -80,19 +80,19 @@
 		</tab>
 		<tab>
 			<text>View config</text>
-			<url>/postfix_view_config.php</url>
+			<url>/nanosistemi-postfix_view_config.php</url>
 		</tab>
 		<tab>
 			<text>Search mail</text>
-			<url>/postfix_search.php</url>
+			<url>/nanosistemi-postfix_search.php</url>
 		</tab>
 		<tab>
 			<text>Queue</text>
-			<url>/postfix_queue.php</url>
+			<url>/nanosistemi-postfix_queue.php</url>
 		</tab>
 		<tab>
 			<text>About</text>
-			<url>/postfix_about.php</url>
+			<url>/nanosistemi-postfix_about.php</url>
 		</tab>
 
 </tabs>

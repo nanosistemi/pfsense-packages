@@ -64,10 +64,10 @@ include("head.inc");
 	$tab_array[] = array(gettext("Access Lists"), false, "/pkg_edit.php?xml=postfix_acl.xml&id=0");
 	$tab_array[] = array(gettext("Antispam"), false, "/pkg_edit.php?xml=postfix_antispam.xml&id=0");
 	$tab_array[] = array(gettext("Sync"), false, "/pkg_edit.php?xml=postfix_sync.xml&id=0");
-	$tab_array[] = array(gettext("View config"), false, "/postfix_view_config.php");
-	$tab_array[] = array(gettext("Search mail"), true, "/postfix_search.php");
-	$tab_array[] = array(gettext("Queue"), false, "/postfix_queue.php");
-	$tab_array[] = array(gettext("About"), false, "/postfix_about.php");
+	$tab_array[] = array(gettext("View config"), false, "/nanosistemi-postfix_view_config.php");
+	$tab_array[] = array(gettext("Search mail"), true, "/nanosistemi-postfix_search.php");
+	$tab_array[] = array(gettext("Queue"), false, "/nanosistemi-postfix_queue.php");
+	$tab_array[] = array(gettext("About"), false, "/nanosistemi-postfix_about.php");
 	display_top_tabs($tab_array);
 ?>
 		</td></tr>
@@ -152,7 +152,7 @@ include("head.inc");
                         <td width="22%" valign="top" class="vncell"><?=gettext("Sqlite files: ");?></td>
                         <td width="78%" class="vtable">
                         	
-                        	<?php if ($handle = opendir('/var/db/postfix')) {
+                        	<?php if ($handle = opendir('/var/db/nanosistemi-postfix')) {
                         		$total_files=0;
                         		$array_files=array();
                         		while (false !== ($file = readdir($handle)))
@@ -243,7 +243,7 @@ function getsearch_results(sbutton) {
 		var $pars="from="+$new_from+"&to="+$new_to+"&sid="+$new_sid+"&limit="+$queuemax+"&fields="+$fields+"&status="+$('status').value+"&server="+$('server').value;
 		var $pars= $pars+"&subject="+$('subject').value+"&msgid="+$('msgid').value+"&files="+$files+"&queue="+$queuetype+"&relay="+$('relay').value+"&sbutton="+sbutton;
 		//alert($pars);
-		var url = "/postfix.php";
+		var url = "/nanosistemi-postfix.php";
 		var myAjax = new Ajax.Request(
 			url,
 			{

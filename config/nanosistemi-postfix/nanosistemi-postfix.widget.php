@@ -63,7 +63,7 @@ if (preg_match('/\d+/',$config['installedpackages']['nanosistemi-postfix']['conf
 else
 	$size='100000000';#100mb
 	
-$postfix_dir="/var/db/postfix/";
+$postfix_dir="/var/db/nanosistemi-postfix/";
 $curr_time = time();
 for ($z = 0; $z > $days; $z--){
 
@@ -120,7 +120,7 @@ echo"</table></div>";
 ?>
 <script type="text/javascript">
 	function getstatus_postfix() {
-		var url = "/widgets/widgets/postfix.widget.php";
+		var url = "/widgets/widgets/nanosistemi-postfix.widget.php";
 		var pars = 'getupdatestatus=yes';
 		var myAjax = new Ajax.Request(
 			url,

@@ -46,7 +46,7 @@
 	<name>nanosistemi-postfix</name>
 	<version>1.3</version>
 	<title>Services: Postfix relay and antispam</title>
-	<include_file>/usr/local/pkg/postfix.inc</include_file>
+	<include_file>/usr/local/pkg/nanosistemi-postfix.inc</include_file>
 	<menu>
 		<name>Postfix Forwarder</name>
 		<tooltiptext>Configure Postfix Forwarder</tooltiptext>
@@ -57,13 +57,13 @@
 		<name>Search Mail</name>
 		<tooltiptext>Search postfix logs</tooltiptext>
 		<section>Diagnostics</section>
-		<url>/postfix_search.php</url>
+		<url>/nanosistemi-postfix_search.php</url>
 	</menu>
 	<menu>
 		<name>Postfix Queue</name>
 		<tooltiptext>check postfix queue</tooltiptext>
 		<section>Status</section>
-		<url>/postfix_queue.php</url>
+		<url>/nanosistemi-postfix_queue.php</url>
 	</menu>
 	<service>
 		<name>postfix</name>
@@ -71,72 +71,72 @@
 		<executable>master</executable>
 	</service>
 	<additional_files_needed>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/postfix.inc</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/nanosistemi-postfix.inc</item>
 		<prefix>/usr/local/pkg/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/postfix_acl.xml</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/nanosistemi-postfix_acl.xml</item>
 		<prefix>/usr/local/pkg/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/postfix_domains.xml</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/nanosistemi-postfix_domains.xml</item>
 		<prefix>/usr/local/pkg/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/postfix_recipients.xml</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/nanosistemi-postfix_recipients.xml</item>
 		<prefix>/usr/local/pkg/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/postfix_antispam.xml</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/nanosistemi-postfix_antispam.xml</item>
 		<prefix>/usr/local/pkg/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/postfix_sync.xml</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/nanosistemi-postfix_sync.xml</item>
 		<prefix>/usr/local/pkg/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 		<additional_files_needed>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/postfix_view_config.php</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/nanosistemi-postfix_view_config.php</item>
 		<prefix>/usr/local/www/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/postfix_recipients.php</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/nanosistemi-postfix_recipients.php</item>
 		<prefix>/usr/local/www/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/postfix_search.php</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/nanosistemi-postfix_search.php</item>
 		<prefix>/usr/local/www/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/postfix.php</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/nanosistemi-postfix.php</item>
 		<prefix>/usr/local/www/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/postfix.widget.php</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/nanosistemi-postfix.widget.php</item>
 		<prefix>/usr/local/www/widgets/widgets/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/postfix_about.php</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/nanosistemi-postfix_about.php</item>
 		<prefix>/usr/local/www/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/postfix_queue.php</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/nanosistemi-postfix_queue.php</item>
 		<prefix>/usr/local/www/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
 	<additional_files_needed>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/postfix.priv.inc</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-postfix/nanosistemi-postfix.priv.inc</item>
 		<prefix>/etc/inc/priv/</prefix>
 		<chmod>0755</chmod>
 	</additional_files_needed>
@@ -173,20 +173,20 @@
 		</tab>
 		<tab>
 			<text>View config</text>
-			<url>/postfix_view_config.php</url>
+			<url>/nanosistemi-postfix_view_config.php</url>
 		</tab>
 		<tab>
 			<text>Search mail</text>
-			<url>/postfix_search.php</url>
+			<url>/nanosistemi-postfix_search.php</url>
 		</tab>
 		<tab>
 			<text>Queue</text>
-			<url>/postfix_queue.php</url>
+			<url>/nanosistemi-postfix_queue.php</url>
 		</tab>
 
 		<tab>
 			<text>About</text>
-			<url>/postfix_about.php</url>
+			<url>/nanosistemi-postfix_about.php</url>
 		</tab>
 
 </tabs>

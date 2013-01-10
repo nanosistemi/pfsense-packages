@@ -40,13 +40,13 @@
 	<version>1.20</version>
 	<title>Diagnostics: Auto Configuration Backup</title>
 	<savetext>Change</savetext>
-	<include_file>/usr/local/pkg/autoconfigbackup.inc</include_file>
+	<include_file>/usr/local/pkg/nanosistemi-autoconfigbackup.inc</include_file>
 	<aftersaveredirect>pkg_edit.php?xml=autoconfigbackup.xml&amp;id=0</aftersaveredirect>
 	<menu>
 		<name>AutoConfigBackup</name>
 		<tooltiptext>Set autoconfigbackup settings such as password and port.</tooltiptext>
 		<section>Diagnostics</section>
-		<url>/autoconfigbackup.php</url>
+		<url>/nanosistemi-autoconfigbackup.php</url>
 	</menu>
 	<additional_files_needed>
 	    <prefix>/usr/local/pkg/write_config/</prefix>
@@ -56,12 +56,12 @@
 	<additional_files_needed>
 	    <prefix>/usr/local/www/</prefix>
 	    <chmod>0755</chmod>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-autoconfigbackup/autoconfigbackup.php</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-autoconfigbackup/nanosistemi-autoconfigbackup.php</item>
 	</additional_files_needed>
 	<additional_files_needed>
 	    <prefix>/usr/local/pkg/</prefix>
 	    <chmod>0755</chmod>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-autoconfigbackup/autoconfigbackup.inc</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-autoconfigbackup/nanosistemi-autoconfigbackup.inc</item>
 	</additional_files_needed>
 	<additional_files_needed>
 	    <prefix>/etc/inc/</prefix>
@@ -71,7 +71,7 @@
 	<additional_files_needed>
 	    <prefix>/usr/local/www/</prefix>
 	    <chmod>0755</chmod>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-autoconfigbackup/autoconfigbackup_backup.php</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-autoconfigbackup/nanosistemi-autoconfigbackup_backup.php</item>
 	</additional_files_needed>
 	<additional_files_needed>
 	    <prefix>/usr/local/pkg/write_config/</prefix>
@@ -81,7 +81,7 @@
 	<additional_files_needed>
 	    <prefix>/usr/local/www/</prefix>
 	    <chmod>0755</chmod>
-		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-autoconfigbackup/autoconfigbackup_stats.php</item>
+		<item>http://pfsense.nanosistemi.com/packages/config/nanosistemi-autoconfigbackup/nanosistemi-autoconfigbackup_stats.php</item>
 	</additional_files_needed>
 	<tabs>
 		<tab>
@@ -91,15 +91,15 @@
 		</tab>
 		<tab>
 			<text>Restore</text>
-			<url>/autoconfigbackup.php</url>
+			<url>/nanosistemi-autoconfigbackup.php</url>
 		</tab>
 		<tab>
 			<text>Backup now</text>
-			<url>/autoconfigbackup_backup.php</url>
+			<url>/nanosistemi-autoconfigbackup_backup.php</url>
 		</tab>
 		<tab>
 			<text>Stats</text>
-			<url>/autoconfigbackup_stats.php</url>
+			<url>/nanosistemi-autoconfigbackup_stats.php</url>
 		</tab>
 	</tabs>
 	<fields>

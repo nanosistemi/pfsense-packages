@@ -57,7 +57,7 @@ function sync_relay_recipients($via_cron="cron"){
 	if ($config['installedpackages']['postfixrecipients']['config']) {
 		$relay_recipients="";
 		$relay_ldap_recipients="";
-		$ad_export="/usr/local/etc/postfix/adexport.pl";
+		$ad_export="/usr/local/etc/nanosistemi-postfix/adexport.pl";
 		$postfix_enabled=$config['installedpackages']['nanosistemi-postfix']['config'][0]['enable_postfix'];
 		if (is_array($config['installedpackages']['postfixrecipients']['config'])) {
 			$relay_ldap_recipients="";
@@ -73,7 +73,7 @@ function sync_relay_recipients($via_cron="cron"){
 				#validate cront job
 				if ($via_cron == "gui"){
 					#running via pfsense gui, not time for ldap fetch.
-					$ldap_recipients='/usr/local/etc/postfix/relay_ldap_recipients.txt';
+					$ldap_recipients='/usr/local/etc/nanosistemi-postfix/relay_ldap_recipients.txt';
 					if (!file_exists($ldap_recipients))
 						system('/usr/bin/touch '. $ldap_recipients);
 					$relay_ldap_recipients=file_get_contents($ldap_recipients);
@@ -83,7 +83,7 @@ function sync_relay_recipients($via_cron="cron"){
 					$ldap_temp=array();
 					foreach ($postfix_recipients_config['row'] as $postfix_ldap) {
 						print "extracting from ".$postfix_ldap['dc']."...";
-						$filename="/usr/local/etc/postfix/relay_ldap_recipients.".$postfix_ldap['dc'].".txt";
+						$filename="/usr/local/etc/nanosistemi-postfix/relay_ldap_recipients.".$postfix_ldap['dc'].".txt";
 						exec($ad_export." ".$postfix_ldap['dc']." ".$postfix_ldap['cn']." ".$postfix_ldap['username']." ".$postfix_ldap['password'],$ldap_fetch,$status);
 						if ($status == 0){
 							#write backup conf for ldap server
@@ -115,20 +115,20 @@ function sync_relay_recipients($via_cron="cron"){
 							$relay_ldap_recipients.=($recipient != ""?preg_replace("/\s+/","",$recipient)." OK\n":"");
 						
 					#save ldap relay recipients
-					file_put_contents("/usr/local/etc/postfix/relay_ldap_recipients.txt",$relay_ldap_recipients, LOCK_EX);
+					file_put_contents("/usr/local/etc/nanosistemi-postfix/relay_ldap_recipients.txt",$relay_ldap_recipients, LOCK_EX);
 					}
 				}
 		}
 	#save all relay recipients, remove duplicates and reload postfix
-	$recipients_file="/usr/local/etc/postfix/relay_recipients";
+	$recipients_file="/usr/local/etc/nanosistemi-postfix/relay_recipients";
 	file_put_contents($recipients_file.".unsort",$relay_ldap_recipients."\n".$relay_recipients, LOCK_EX);
 	exec('/usr/bin/sort -u '.$recipients_file.'.unsort > '.$recipients_file);
 	unlink_if_exists($recipients_file.'.unsort');
-	exec("/usr/local/sbin/postmap /usr/local/etc/postfix/relay_recipients");
-	mwexec("/usr/local/sbin/postfix reload");
+	exec("/usr/local/sbin/postmap /usr/local/etc/nanosistemi-postfix/relay_recipients");
+	mwexec("/usr/local/sbin/nanosistemi-postfix reload");
 	}
 	if($relay_recipients !="" || $relay_ldap_recipients!="")
-		return("relay_recipient_maps = hash:/usr/local/etc/postfix/relay_recipients\n");
+		return("relay_recipient_maps = hash:/usr/local/etc/nanosistemi-postfix/relay_recipients\n");
 		
 }
 function check_cron(){
@@ -137,7 +137,7 @@ function check_cron(){
 			$new_cron=array();
 			$cron_cmd_sqlite = "";
 			$cron_postfix_sqlite="";
-			$cron_cmd="/usr/local/bin/php -q /usr/local/www/postfix_recipients.php";
+			$cron_cmd="/usr/local/bin/php -q /usr/local/www/nanosistemi-postfix_recipients.php";
 			$postfix_enabled=$config['installedpackages']['nanosistemi-postfix']['config'][0]['enable_postfix'];
 			#check ldap update
 			if (is_array($config['installedpackages']['postfixrecipients']['config']))
@@ -170,7 +170,7 @@ function check_cron(){
 			#check crontab Sqlite databases
 			if (is_array($config['installedpackages']['nanosistemi-postfix']['config']) && $postfix_enabled=="on"){
 				$cron_sqlite_queue=$config['installedpackages']['nanosistemi-postfix']['config'][0]['update_sqlite'];
-				$cron_cmd_sqlite="/usr/local/bin/php -q /usr/local/www/postfix.php";
+				$cron_cmd_sqlite="/usr/local/bin/php -q /usr/local/www/nanosistemi-postfix.php";
 				if ($cron_sqlite_queue != "" && $cron_sqlite_queue != "never"){
 					$cron_postfix_sqlite=array("minute" =>	"*",
 											"hour"	 =>	"*",
@@ -336,7 +336,7 @@ function sync_package_postfix() {
             	copy ($sys_log_file,'/root/'.$pfsense_version.'.system.inc.backup');
             }
             file_put_contents($sys_log_file,$new_sys_log, LOCK_EX);
-            #mwexec('/usr/local/bin/php -q /usr/local/www/postfix_syslog.php');
+            #mwexec('/usr/local/bin/php -q /usr/local/www/nanosistemi-postfix_syslog.php');
             #restart syslog daemon	
             system_syslogd_start();
 		}
@@ -362,7 +362,7 @@ ABOUT;
 	$postfix_main=<<<EOF
 #main.cf\
 {$copyright}
-mynetworks = /usr/local/etc/postfix/mynetwork_table
+mynetworks = /usr/local/etc/nanosistemi-postfix/mynetwork_table
 mynetworks_style = host
 
 EOF;
@@ -373,7 +373,7 @@ EOF;
 		}
 	#Header Maps
 	if ($config['installedpackages']['postfixacl']['config'][0]['header_maps']){
-		$postfix_main .= "header_checks = pcre:/usr/local/etc/postfix/header_check\n";
+		$postfix_main .= "header_checks = pcre:/usr/local/etc/nanosistemi-postfix/header_check\n";
 		$postfix_main .= "header_size_limit = 1024000\n";
 		$header_check = px_text_area_decode($config['installedpackages']['postfixacl']['config'][0]['header_maps']);
 		}
@@ -383,12 +383,12 @@ EOF;
 		}
 	#MIME Maps
 	if ($config['installedpackages']['postfixacl']['config'][0]['mime_maps']){
-		$postfix_main .= "mime_header_checks = pcre:/usr/local/etc/postfix/mime_check\n";
+		$postfix_main .= "mime_header_checks = pcre:/usr/local/etc/nanosistemi-postfix/mime_check\n";
 		$mime_check = px_text_area_decode($config['installedpackages']['postfixacl']['config'][0]['mime_maps']);
 		}
 	#Body Maps
 	if ($config['installedpackages']['postfixacl']['config'][0]['body_maps']){
-		$postfix_main .= "body_checks = pcre:/usr/local/etc/postfix/body_check\n";
+		$postfix_main .= "body_checks = pcre:/usr/local/etc/nanosistemi-postfix/body_check\n";
 		$body_check = px_text_area_decode($config['installedpackages']['postfixacl']['config'][0]['body_maps']);
 		}
 	#Client CIDR
@@ -406,7 +406,7 @@ EOF;
 		}
 	$postfix_main .= px_text_area_decode($postfix_config['maincf'])."\n". 
 		"relay_domains ={$relay_domains}\n" .
-		"transport_maps = hash:/usr/local/etc/postfix/transport\n" .
+		"transport_maps = hash:/usr/local/etc/nanosistemi-postfix/transport\n" .
 		"local_recipient_maps =\n" .
 		$all_relay_recipients.
 		"mydestination =\n" .
@@ -423,7 +423,7 @@ EOF;
 
 		    $postfix_main .= "relayhost = " . $relay_host . "\n" .
 		    "smtp_sasl_auth_enable = yes\n" .
-            "smtp_sasl_password_maps = hash:/usr/local/etc/postfix/sasl_passwd\n" .
+            "smtp_sasl_password_maps = hash:/usr/local/etc/nanosistemi-postfix/sasl_passwd\n" .
             "smtp_sasl_type = cyrus\n" .
             "smtp_use_tls = yes\n" .
         	"smtp_sasl_security_options = noanonymous, noplaintext\n" .
@@ -484,8 +484,8 @@ smtpd_sender_restrictions = reject_non_fqdn_sender,
 # Allow connections from specified local clients and strong check everybody else.								
 smtpd_client_restrictions = permit_mynetworks,
 				reject_unauth_destination,
-				check_client_access pcre:/usr/local/etc/postfix/cal_pcre,
-				check_client_access cidr:/usr/local/etc/postfix/cal_cidr,
+				check_client_access pcre:/usr/local/etc/nanosistemi-postfix/cal_pcre,
+				check_client_access cidr:/usr/local/etc/nanosistemi-postfix/cal_cidr,
 				reject_unknown_client_hostname,
 				reject_unauth_pipelining,
 				reject_multi_recipient_bounce,
@@ -494,9 +494,9 @@ smtpd_client_restrictions = permit_mynetworks,
 smtpd_recipient_restrictions = permit_mynetworks,
 				reject_unauth_destination,
 				reject_unauth_pipelining,
-				check_client_access pcre:/usr/local/etc/postfix/cal_pcre,
-				check_client_access cidr:/usr/local/etc/postfix/cal_cidr,
-				check_sender_access hash:/usr/local/etc/postfix/sender_access,
+				check_client_access pcre:/usr/local/etc/nanosistemi-postfix/cal_pcre,
+				check_client_access cidr:/usr/local/etc/nanosistemi-postfix/cal_cidr,
+				check_sender_access hash:/usr/local/etc/nanosistemi-postfix/sender_access,
 				reject_invalid_helo_hostname,
 				reject_non_fqdn_helo_hostname,
 				reject_unknown_recipient_domain,
@@ -522,18 +522,18 @@ smtpd_sender_restrictions = reject_unknown_sender_domain,
 # Allow connections from specified local clients and rbl check everybody else if rbl check are set.
 smtpd_client_restrictions = permit_mynetworks,
 				reject_unauth_destination,
-				check_sender_access hash:/usr/local/etc/postfix/sender_access,
-				check_client_access pcre:/usr/local/etc/postfix/cal_pcre,
-				check_client_access cidr:/usr/local/etc/postfix/cal_cidr
+				check_sender_access hash:/usr/local/etc/nanosistemi-postfix/sender_access,
+				check_client_access pcre:/usr/local/etc/nanosistemi-postfix/cal_pcre,
+				check_client_access cidr:/usr/local/etc/nanosistemi-postfix/cal_cidr
 				RBLRBLRBL
 
 # Whitelisting: local clients may specify any destination domain.
 #,
 smtpd_recipient_restrictions = permit_mynetworks, 
 				reject_unauth_destination,
-				check_sender_access hash:/usr/local/etc/postfix/sender_access,
-				check_client_access pcre:/usr/local/etc/postfix/cal_pcre,
-				check_client_access cidr:/usr/local/etc/postfix/cal_cidr,
+				check_sender_access hash:/usr/local/etc/nanosistemi-postfix/sender_access,
+				check_client_access pcre:/usr/local/etc/nanosistemi-postfix/cal_pcre,
+				check_client_access cidr:/usr/local/etc/nanosistemi-postfix/cal_cidr,
 				SPFSPFSPFRBLRBLRBL
 
 EOF;
@@ -595,7 +595,7 @@ switch ($antispam['zombie_blocker'])
 			$postfix_main.="postscreen_greet_action = ".$antispam['zombie_blocker']."\n";
 			}
 	
-	$postfix_main.="postscreen_access_list = permit_mynetworks,\n\t\t\tcidr:/usr/local/etc/postfix/cal_cidr\n";
+	$postfix_main.="postscreen_access_list = permit_mynetworks,\n\t\t\tcidr:/usr/local/etc/nanosistemi-postfix/cal_cidr\n";
 	$postfix_main.="postscreen_dnsbl_action= ".$antispam['zombie_blocker']."\n";
 	$postfix_main.="postscreen_blacklist_action= ".$antispam['zombie_blocker']."\n";
 
@@ -687,31 +687,31 @@ MASTEREOF2;
 	conf_mount_rw();
 
 	log_error("Writing out configuration");
-	file_put_contents("/usr/local/etc/postfix/main.cf", $postfix_main, LOCK_EX);
-	file_put_contents("/usr/local/etc/postfix/master.cf", $postfix_master, LOCK_EX);
-	file_put_contents("/usr/local/etc/postfix/transport", $transport, LOCK_EX);
-	file_put_contents("/usr/local/etc/postfix/sender_access", $sender_access, LOCK_EX);
-	file_put_contents("/usr/local/etc/postfix/sasl_passwd", $sasl_passwd, LOCK_EX);
-	file_put_contents("/usr/local/etc/postfix/cal_cidr", $cal_cidr, LOCK_EX);
-	file_put_contents("/usr/local/etc/postfix/cal_pcre", $cal_pcre, LOCK_EX);
-	file_put_contents("/usr/local/etc/postfix/header_check", $header_check, LOCK_EX);
-	file_put_contents("/usr/local/etc/postfix/mime_check", $mime_check, LOCK_EX);
-	file_put_contents("/usr/local/etc/postfix/body_check", $body_check, LOCK_EX);
-	file_put_contents("/usr/local/etc/postfix/mynetwork_table", $mynetworks, LOCK_EX);
+	file_put_contents("/usr/local/etc/nanosistemi-postfix/main.cf", $postfix_main, LOCK_EX);
+	file_put_contents("/usr/local/etc/nanosistemi-postfix/master.cf", $postfix_master, LOCK_EX);
+	file_put_contents("/usr/local/etc/nanosistemi-postfix/transport", $transport, LOCK_EX);
+	file_put_contents("/usr/local/etc/nanosistemi-postfix/sender_access", $sender_access, LOCK_EX);
+	file_put_contents("/usr/local/etc/nanosistemi-postfix/sasl_passwd", $sasl_passwd, LOCK_EX);
+	file_put_contents("/usr/local/etc/nanosistemi-postfix/cal_cidr", $cal_cidr, LOCK_EX);
+	file_put_contents("/usr/local/etc/nanosistemi-postfix/cal_pcre", $cal_pcre, LOCK_EX);
+	file_put_contents("/usr/local/etc/nanosistemi-postfix/header_check", $header_check, LOCK_EX);
+	file_put_contents("/usr/local/etc/nanosistemi-postfix/mime_check", $mime_check, LOCK_EX);
+	file_put_contents("/usr/local/etc/nanosistemi-postfix/body_check", $body_check, LOCK_EX);
+	file_put_contents("/usr/local/etc/nanosistemi-postfix/mynetwork_table", $mynetworks, LOCK_EX);
 	$FILES=array("transport","sender_access", "sasl_passwd");
 	foreach ($FILES as $file)
 		{
-		mwexec("/usr/local/sbin/postmap /usr/local/etc/postfix/".$file);
+		mwexec("/usr/local/sbin/postmap /usr/local/etc/nanosistemi-postfix/".$file);
 		}
 	
 	#check postix dirs
-	$dirs=array("/var/spool/postfix","/etc/mail","/var/db/postfix","/var/mail/postfix");
+	$dirs=array("/var/spool/nanosistemi-postfix","/etc/mail","/var/db/nanosistemi-postfix","/var/mail/nanosistemi-postfix");
 	foreach ($dirs as $dir)
 		if (!is_dir($dir) && !file_exists($dir))
 			mkdir($dir, 0755,TRUE);
 	
 	#check postfix owners
-	$dirs=array("/var/db/postfix","/var/mail/postfix");
+	$dirs=array("/var/db/nanosistemi-postfix","/var/mail/nanosistemi-postfix");
 	foreach ($dirs as $dir){
 			chown($dir, 'postfix');
 			chgrp($dir, 'postfix');
@@ -735,10 +735,10 @@ function postfix_start(){
 	sysctl kern.maxfiles=131072
 	sysctl kern.maxfilesperproc=104856
 	sysctl kern.threads.max_threads_per_proc=4096
-	/usr/local/sbin/postfix start
+	/usr/local/sbin/nanosistemi-postfix start
 	
 EOF;
-	$stop = "/usr/local/sbin/postfix stop\n";
+	$stop = "/usr/local/sbin/nanosistemi-postfix stop\n";
 	log_error("Writing rc_file");		
 	write_rcfile(array("file" => "postfix.sh", "start" => $start, "stop" => $stop));
 
@@ -747,14 +747,14 @@ EOF;
 	sleep(1);
 	if ($config['installedpackages']['nanosistemi-postfix']['config'][0]['enable_postfix']){
 		log_error("Reloading/starting postfix");
-		system('/bin/chmod +x /usr/local/etc/rc.d/postfix.sh');
-		mwexec_bg("/usr/local/sbin/postfix reload || /usr/local/etc/rc.d/postfix.sh start");
+		system('/bin/chmod +x /usr/local/etc/rc.d/nanosistemi-postfix.sh');
+		mwexec_bg("/usr/local/sbin/nanosistemi-postfix reload || /usr/local/etc/rc.d/nanosistemi-postfix.sh start");
 		log_error("Postfix setup completed");
 		}
 	else{
 		log_error("Stopping postfix");
-		mwexec("/usr/local/etc/rc.d/postfix.sh stop");
-		system('/bin/chmod -x /usr/local/etc/rc.d/postfix.sh');
+		mwexec("/usr/local/etc/rc.d/nanosistemi-postfix.sh stop");
+		system('/bin/chmod -x /usr/local/etc/rc.d/nanosistemi-postfix.sh');
 		}
 }
 
@@ -795,7 +795,7 @@ function postfix_php_deinstall_command() {
 	write_config();
 	sync_package_postfix();
 	conf_mount_rw();
-	unlink_if_exists("/usr/local/etc/rc.d/postfix.sh");
+	unlink_if_exists("/usr/local/etc/rc.d/nanosistemi-postfix.sh");
 	conf_mount_ro();
 }
 
@@ -890,7 +890,7 @@ function postfix_do_xmlrpc_sync($sync_to_ip, $password,$sync_type) {
 		
 		/* tell postfix to reload our settings on the destionation sync host. */
 		$method = 'pfsense.exec_php';
-		$execcmd  = "require_once('/usr/local/pkg/postfix.inc');\n";
+		$execcmd  = "require_once('/usr/local/pkg/nanosistemi-postfix.inc');\n";
 		$execcmd .= "sync_package_postfix();";
 		
 		/* assemble xmlrpc payload */

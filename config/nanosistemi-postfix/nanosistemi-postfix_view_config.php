@@ -30,14 +30,14 @@
 
 require("guiconfig.inc");
 function get_file($file){
-	$files['main']="/usr/local/etc/postfix/main.cf";
-	$files['master']="/usr/local/etc/postfix/master.cf";
-	$files['recipients']="/usr/local/etc/postfix/relay_recipients";
-	$files['header']="/usr/local/etc/postfix/header_check";
-	$files['mime']="/usr/local/etc/postfix/mime_check";
-	$files['body']="/usr/local/etc/postfix/body_check";
-	$files['cidr']="/usr/local/etc/postfix/cal_cidr";
-	$files['pcre']="/usr/local/etc/postfix/cal_pcre";
+	$files['main']="/usr/local/etc/nanosistemi-postfix/main.cf";
+	$files['master']="/usr/local/etc/nanosistemi-postfix/master.cf";
+	$files['recipients']="/usr/local/etc/nanosistemi-postfix/relay_recipients";
+	$files['header']="/usr/local/etc/nanosistemi-postfix/header_check";
+	$files['mime']="/usr/local/etc/nanosistemi-postfix/mime_check";
+	$files['body']="/usr/local/etc/nanosistemi-postfix/body_check";
+	$files['cidr']="/usr/local/etc/nanosistemi-postfix/cal_cidr";
+	$files['pcre']="/usr/local/etc/nanosistemi-postfix/cal_pcre";
 
 	if ($files[$file]!="" && file_exists($files[$file])){
 		print '<textarea rows="50" cols="100%">';
@@ -80,10 +80,10 @@ else{
 		$tab_array[] = array(gettext("Access Lists"), false, "/pkg_edit.php?xml=postfix_acl.xml&id=0");
 		$tab_array[] = array(gettext("Antispam"), false, "/pkg_edit.php?xml=postfix_antispam.xml&id=0");
 		$tab_array[] = array(gettext("Sync"), false, "/pkg_edit.php?xml=postfix_sync.xml&id=0");
-		$tab_array[] = array(gettext("View config"), true, "/postfix_view_config.php");
-		$tab_array[] = array(gettext("Search mail"), false, "/postfix_search.php");
-		$tab_array[] = array(gettext("Queue"), false, "/postfix_queue.php");
-		$tab_array[] = array(gettext("About"), false, "/postfix_about.php");
+		$tab_array[] = array(gettext("View config"), true, "/nanosistemi-postfix_view_config.php");
+		$tab_array[] = array(gettext("Search mail"), false, "/nanosistemi-postfix_search.php");
+		$tab_array[] = array(gettext("Queue"), false, "/nanosistemi-postfix_queue.php");
+		$tab_array[] = array(gettext("About"), false, "/nanosistemi-postfix_about.php");
 		display_top_tabs($tab_array);
 	?>
 			</td></tr>
@@ -125,7 +125,7 @@ else{
 	function get_postfix_file(file) {
 			$('btn_'+file).value="reading...";
 			var pars = 'file='+file;
-			var url = "/postfix_view_config.php";
+			var url = "/nanosistemi-postfix_view_config.php";
 			var myAjax = new Ajax.Request(
 				url,
 				{

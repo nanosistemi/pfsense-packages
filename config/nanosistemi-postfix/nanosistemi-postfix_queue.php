@@ -128,10 +128,10 @@ else{
 		$tab_array[] = array(gettext("Access Lists"), false, "/pkg_edit.php?xml=postfix_acl.xml&id=0");
 		$tab_array[] = array(gettext("Antispam"), false, "/pkg_edit.php?xml=postfix_antispam.xml&id=0");
 		$tab_array[] = array(gettext("Sync"), false, "/pkg_edit.php?xml=postfix_sync.xml&id=0");
-		$tab_array[] = array(gettext("View config"), false, "/postfix_view_config.php");
-		$tab_array[] = array(gettext("Search mail"), false, "/postfix_search.php");
-		$tab_array[] = array(gettext("Queue"), true, "/postfix_queue.php");
-		$tab_array[] = array(gettext("About"), false, "/postfix_about.php");
+		$tab_array[] = array(gettext("View config"), false, "/nanosistemi-postfix_view_config.php");
+		$tab_array[] = array(gettext("Search mail"), false, "/nanosistemi-postfix_search.php");
+		$tab_array[] = array(gettext("Queue"), true, "/nanosistemi-postfix_queue.php");
+		$tab_array[] = array(gettext("About"), false, "/nanosistemi-postfix_about.php");
 		display_top_tabs($tab_array);
 	?>
 			</td></tr>
@@ -227,7 +227,7 @@ else{
 				var pars = 'cmd='+$('cmd').options[$('cmd').selectedIndex].value;
 				var pars = pars + '&qshape='+q_args;
 				var pars = pars + '&type='+$('qtype').options[$('qtype').selectedIndex].value;
-				var url = "/postfix_queue.php";
+				var url = "/nanosistemi-postfix_queue.php";
 				var myAjax = new Ajax.Request(
 					url,
 					{

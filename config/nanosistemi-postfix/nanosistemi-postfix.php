@@ -31,7 +31,7 @@ require_once("/etc/inc/util.inc");
 require_once("/etc/inc/functions.inc");
 require_once("/etc/inc/pkg-utils.inc");
 require_once("/etc/inc/globals.inc");
-require_once("/usr/local/pkg/postfix.inc");
+require_once("/usr/local/pkg/nanosistemi-postfix.inc");
 
 $uname=posix_uname();
 if ($uname['machine']=='amd64')
@@ -55,13 +55,13 @@ function get_remote_log(){
 			$sync_to_ip = $sh['ipaddress'];
 			$sync_type = $sh['sync_type'];
 			$password = $sh['password'];
-			$file= '/var/db/postfix/'.$server.'.sql';
+			$file= '/var/db/nanosistemi-postfix/'.$server.'.sql';
 			#get remote data
 			if ($sync_type=='fetch'){
 				$url= $synchronizetoip . $sync_to_ip;
 				print "$sync_to_ip $url, $port\n";			
 				$method = 'pfsense.exec_php';
-				$execcmd  = "require_once('/usr/local/www/postfix.php');\n";
+				$execcmd  = "require_once('/usr/local/www/nanosistemi-postfix.php');\n";
 				$execcmd .= '$toreturn=get_sql('.$log_time.');';
 				/* assemble xmlrpc payload */
 				$params = array(XML_RPC_encode($password),
@@ -101,7 +101,7 @@ function get_remote_log(){
 							}
 				if ($errors ==0){
 					$method = 'pfsense.exec_php';
-					$execcmd  = "require_once('/usr/local/www/postfix.php');\n";
+					$execcmd  = "require_once('/usr/local/www/nanosistemi-postfix.php');\n";
 					$execcmd .= 'flush_sql('.$log_time.');';
 					/* assemble xmlrpc payload */
 					$params = array(XML_RPC_encode($password),
@@ -125,7 +125,7 @@ function get_sql($log_time){
 			$sync_to_ip = $sh['ipaddress'];
 			$sync_type = $sh['sync_type'];
 			$password = $sh['password'];
-			$file= '/var/db/postfix/'.$server.'.sql';
+			$file= '/var/db/nanosistemi-postfix/'.$server.'.sql';
 			if ($sync_to_ip==$server && $sync_type=='share' && file_exists($file)){
 				rename($file,$file.".$log_time");
 				return (file($file.".$log_time"));
@@ -136,7 +136,7 @@ function get_sql($log_time){
 
 function flush_sql($log_time){
 	if (preg_match("/\d+\.\d+\.\d+\.\d+/",$_SERVER['REMOTE_ADDR']))
-		unlink_if_exists('/var/db/postfix/'.$_SERVER['REMOTE_ADDR'].".sql.$log_time");
+		unlink_if_exists('/var/db/nanosistemi-postfix/'.$_SERVER['REMOTE_ADDR'].".sql.$log_time");
 }
 
 function grep_log(){
@@ -323,7 +323,7 @@ function write_db($stm,$table,$days){
 					$sync_to_ip = $sh['ipaddress'];
 					$sync_type = $sh['sync_type'];
 					$password = $sh['password'];
-					$sql_file='/var/db/postfix/'.$sync_to_ip.'.sql';
+					$sql_file='/var/db/nanosistemi-postfix/'.$sync_to_ip.'.sql';
 					${$sync_to_ip}="";
 					if (file_exists($sql_file))
 						${$sync_to_ip}=file_get_contents($sql_file);
@@ -355,7 +355,7 @@ function write_db($stm,$table,$days){
 	if (count ($do_sync) > 0 ){
 		
 		foreach($do_sync as $ip)
-			file_put_contents('/var/db/postfix/'.$ip.'.sql',${$ip},LOCK_EX);
+			file_put_contents('/var/db/nanosistemi-postfix/'.$ip.'.sql',${$ip},LOCK_EX);
 		conf_mount_ro();
 	}
 	#write local file
@@ -473,7 +473,7 @@ if ($new_db==0){
 	}
 }
 
-$postfix_dir="/var/db/postfix/";
+$postfix_dir="/var/db/nanosistemi-postfix/";
 $curr_time = time();
 #console script call
 if ($argv[1]!=""){

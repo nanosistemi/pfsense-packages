@@ -139,11 +139,11 @@ function get_hostnames() {
 			$active = false;
 		else 
 			$active = true;
-		$tab_array[1] = array("Restore", $active, "/autoconfigbackup.php");
+		$tab_array[1] = array("Restore", $active, "/nanosistemi-autoconfigbackup.php");
 		if($_REQUEST['download'])
-			$tab_array[] = array("Revision", true, "/autoconfigbackup.php?download={$_REQUEST['download']}");
-		$tab_array[] = array("Backup now", false, "/autoconfigbackup_backup.php");
-		$tab_array[] = array("Stats", false, "/autoconfigbackup_stats.php");
+			$tab_array[] = array("Revision", true, "/nanosistemi-autoconfigbackup.php?download={$_REQUEST['download']}");
+		$tab_array[] = array("Backup now", false, "/nanosistemi-autoconfigbackup_backup.php");
+		$tab_array[] = array("Stats", false, "/nanosistemi-autoconfigbackup_stats.php");
 		display_top_tabs($tab_array);
 		$hostnames = get_hostnames();
 	?>			
