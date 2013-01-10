@@ -49,12 +49,12 @@
 		<name>Postfix Antispam and mail Relay</name>
 		<tooltiptext>Configure Postfix Forwarder</tooltiptext>
 		<section>Services</section>
-		<url>pkg_edit.php?xml=postfix.xml&amp;id=0</url>
+		<url>pkg_edit.php?xml=nanosistemi-postfix.xml&amp;id=0</url>
 	</menu>
 <tabs>
 		<tab>
 			<text>General</text>
-			<url>/pkg_edit.php?xml=postfix.xml&amp;id=0</url>
+			<url>/pkg_edit.php?xml=nanosistemi-postfix.xml&amp;id=0</url>
 		</tab>
 		<tab>
 			<text>Domains</text>

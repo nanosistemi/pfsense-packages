@@ -74,7 +74,7 @@ else{
 			<tr><td>
 	<?php
 		$tab_array = array();
-		$tab_array[] = array(gettext("General"), false, "/pkg_edit.php?xml=postfix.xml&id=0");
+		$tab_array[] = array(gettext("General"), false, "/pkg_edit.php?xml=nanosistemi-postfix.xml&id=0");
 		$tab_array[] = array(gettext("Domains"), false, "/pkg_edit.php?xml=postfix_domains.xml&id=0");
 		$tab_array[] = array(gettext("Recipients"), false, "/pkg_edit.php?xml=postfix_recipients.xml&id=0");
 		$tab_array[] = array(gettext("Access Lists"), false, "/pkg_edit.php?xml=postfix_acl.xml&id=0");
