@@ -3,12 +3,12 @@
 # by the pfSense service handler.
 
 rc_start() {
-	/usr/local/sbin/nanosistemi-postfix start
+	/usr/local/sbin/postfix start
 
 }
 
 rc_stop() {
-	/usr/local/sbin/nanosistemi-postfix stop
+	/usr/local/sbin/postfix stop
 
 }
 
